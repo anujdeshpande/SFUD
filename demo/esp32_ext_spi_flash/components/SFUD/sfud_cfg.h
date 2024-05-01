@@ -36,12 +36,12 @@
 #define SFUD_USING_FLASH_INFO_TABLE
 
 enum {
-    SFUD_W25Q128_DEVICE_INDEX = 0,
+    SFUD_GD25Q64B_DEVICE_INDEX = 0,
 };
 
 #define SFUD_FLASH_DEVICE_TABLE                                                \
 {                                                                              \
-    [SFUD_W25Q128_DEVICE_INDEX] = {.name = "W25Q128", .spi.name = "spi2"},           \
+    [SFUD_GD25Q64B_DEVICE_INDEX] = {.name = "GD25Q64B", .spi.name = "spi2"},           \
 }
 
 //#define SFUD_USING_QSPI

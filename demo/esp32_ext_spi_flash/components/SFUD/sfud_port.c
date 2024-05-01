@@ -39,10 +39,10 @@
 #include <inttypes.h>
 #include "esp_timer.h"
 
-#define FLASH_MISO_Pin  10
-#define FLASH_MOSI_Pin  3
-#define FLASH_SCLK_Pin  2
-#define FLASH_CS_Pin    7
+#define FLASH_MISO_Pin  4
+#define FLASH_MOSI_Pin  7
+#define FLASH_SCLK_Pin  6
+#define FLASH_CS_Pin    5
 
 static const char *TAG = "SFUD";
 
@@ -177,7 +177,7 @@ sfud_err sfud_spi_port_init(sfud_flash *flash) {
     ESP_ERROR_CHECK(result);
     //Attach the flash to the SPI bus
     spi_device_interface_config_t devcfg = {
-            .flags = SPI_DEVICE_HALFDUPLEX,
+            /* .flags = SPI_DEVICE_HALFDUPLEX, */
             .clock_speed_hz = SPI_MASTER_FREQ_40M,
             .mode = 0,
             .spics_io_num = -1,     // control cs pin manually
@@ -202,7 +202,7 @@ sfud_err sfud_spi_port_init(sfud_flash *flash) {
 
     ESP_LOGI(TAG, "Registering flash in SFUD...");
     switch (flash->index) {
-        case SFUD_W25Q128_DEVICE_INDEX: {
+        case SFUD_GD25Q64B_DEVICE_INDEX: {
             flash->spi.wr = spi_write_read;
             flash->spi.lock = spi_lock;
             flash->spi.unlock = spi_unlock;
